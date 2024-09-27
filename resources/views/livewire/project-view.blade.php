@@ -17,12 +17,17 @@
         </div>
 
         <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4 text-orange-600">Project Structure</h3>
+            @include('livewire.partials.folder-structure', ['structure' => $folderStructure])
+        </div>
+
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
             <h3 class="text-xl font-semibold mb-4 text-orange-600">Project Files</h3>
             @if ($files->count() > 0)
                 <ul class="divide-y divide-gray-200">
                     @foreach ($files as $file)
                         <li class="py-4">
-                            <div class="flex items-center space-x-4">
+                            <div class="flex items-center justify-between">
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium text-gray-900 truncate">
                                         {{ $file->file_path }}
@@ -31,11 +36,10 @@
                                         {{ \Illuminate\Support\Str::limit($file->content, 50) }}
                                     </p>
                                 </div>
-                                <div>
-                                    <span
-                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
-                                        {{ $file->file_type }}
-                                    </span>
+                                <div class="flex space-x-2">
+                                    <button wire:click="viewFile({{ $file->id }})" class="px-2 py-1 bg-blue-500 text-white rounded">View</button>
+                                    <button wire:click="editFile({{ $file->id }})" class="px-2 py-1 bg-yellow-500 text-white rounded">Edit</button>
+                                    <button wire:click="deleteFile({{ $file->id }})" class="px-2 py-1 bg-red-500 text-white rounded">Delete</button>
                                 </div>
                             </div>
                         </li>
@@ -100,8 +104,12 @@
                         {!! $formattedAiResponse !!}
                     </div>
                 </div>
+                <button wire:click="fillUpContent" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                    Fill Up Content
+                </button>
             </div>
         @endif
+    </div>
     </div>
 
     <script>

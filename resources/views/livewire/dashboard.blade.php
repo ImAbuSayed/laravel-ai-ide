@@ -36,8 +36,11 @@
     </div>
 
     <div class="mt-6">
-        <a href="{{ route('project.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{ route('project.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
             Create New Project
+        </a>
+        <a href="{{ route('project.create.wizard') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Create Project (Wizard)
         </a>
     </div>
 </div>

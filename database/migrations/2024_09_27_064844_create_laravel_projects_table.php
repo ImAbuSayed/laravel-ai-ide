@@ -16,6 +16,8 @@ return new class extends Migration
             $table->boolean('use_api')->default(false);
             $table->boolean('use_admin_panel')->default(false);
             $table->string('github_url')->nullable();
+            $table->text('database_design')->nullable();
+            $table->text('features')->nullable();
             $table->timestamps();
         });
     }
